@@ -1,7 +1,10 @@
 #include <Arduino.h>
+CRGB monPixel;
+#include <FastLED.h>
+#include <MicroOscSlip.h>
+
 #define MA_BROCHE_BOUTON 39
 #define MA_BROCHE_ANGLE 32
-#include <MicroOscSlip.h>
 // Le nombre 128 entre les < > ci-dessous est le nombre maximal d'octets réservés pour les messages entrants.
 // Les messages sortants sont écrits directement sur la sortie et ne nécessitent pas de réservation d'octets supplémentaires.
 MicroOscSlip<128> monOsc(&Serial);
@@ -24,11 +27,6 @@ void loop() {
   //Serial.println(maLectureBouton);
   delay(100);
 
-  //if (maLectureAnalogique >= 2047)
-  //{
-  //  monPixel = CRGB(253, 75, 122);
-  //FastLED.show();
-  //} else if (maLectureAnalogique < 2047) {
-   // FastLED.clear(true);
+  monPixel = CRGB(millis() % 255);
 }
 
