@@ -1,7 +1,7 @@
 #include <Arduino.h>
-CRGB monPixel;
 #include <FastLED.h>
 #include <MicroOscSlip.h>
+CRGB monPixel;
 
 #define MA_BROCHE_BOUTON 39
 #define MA_BROCHE_ANGLE 32
@@ -12,6 +12,7 @@ MicroOscSlip<128> monOsc(&Serial);
 
 
 void setup() {
+  FastLED.addLeds<WS2812, 27, GRB>(&monPixel, 1);
   pinMode( MA_BROCHE_BOUTON , INPUT );
   Serial.begin(115200);
 }
@@ -27,6 +28,7 @@ void loop() {
   //Serial.println(maLectureBouton);
   delay(100);
 
-  monPixel = CRGB(millis() % 255);
+  monPixel = CRGB(0, millis() % 255, 0);
+  FastLED.show();
 }
 
